@@ -1,0 +1,276 @@
+---
+title: "A look into the future - using digital disease surveillance tools for near real-time epidemic forecasting"
+author: >-
+   Sangeeta Bhatia<sup>a</sup>, Britta Lassmann<sup>b</sup>,
+   Emily Cohn<sup>c</sup>, Malwina Carrion<sup>b, d</sup>, 
+   Moritz U. G. Kraemer<sup>c, e, f</sup>, Mark Herringer<sup>g</sup>, 
+   John Brownstein<sup>c</sup>, Larry Madoff<sup>b</sup>, 
+   Anne Cori<sup>a</sup>, Pierre Nouvellet<sup>h</sup>
+institute: >-
+   [a] MRC Centre for Global Infectious Disease Analysis,Imperial College London,
+   [b] ProMED, International Society for Infectious Diseases <br>
+   [c] Computational Epidemiology Group, Boston Children’s Hospital, 
+   [d] Department of Health Science, Sargent College <br>
+   [e] Department of Zoology, Oxford University,
+   [f] Department of Pediatrics, Harvard Medical School <br>
+   [g] healthsites.io,
+   [h] Evolution, Behaviour and Environment, University of Sussex <br>
+output:
+  xaringan::moon_reader:
+    css: ["default", "default-fonts", "my_theme.css", "animate.css"] 
+    lib_dir: libs
+    includes:
+      after_body: insert_logo.html
+    nature:
+      beforeInit: "macros.js"	
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    seal: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+class: title-slide
+
+# Using digital disease surveillance tools for near real-time epidemic forecasting
+
+<br>
+<h3> Sangeeta Bhatia<sup>a</sup>, Britta Lassmann<sup>b</sup>, Emily Cohn<sup>c</sup>, Malwina Carrion<sup>b, d</sup>,
+Moritz U. G. Kraemer<sup>c, e, f</sup>, Mark Herringer<sup>g</sup>, John Brownstein<sup>c</sup>, Larry Madoff<sup>b</sup>, 
+Anne Cori<sup>a</sup>, Pierre Nouvellet<sup>h</sup></h3>
+
+<br>
+<h4> [a] MRC Centre for Global Infectious Disease Analysis,Imperial
+College London, <br> [b] ProMED, International Society for Infectious Diseases 
+[c] Computational Epidemiology Group, Boston Children’s Hospital, <br>
+[d] Department of Health Science, Sargent College
+[e] Department of Zoology, Oxford University
+[f] Department of Pediatrics, Harvard Medical School
+ [g] healthsites.io, [h] Evolution, Behaviour and Environment, University of Sussex </h4>
+
+
+
+---
+
+# Project Partners
+
+![](project-partners.png)
+
+---
+# ProMED Mail
+
+![:scale 60%](promed-post-ebola.png)
+
+---
+
+# HealthMap
+
+![](healthmap.png)
+
+---
+# Theoretical Framework
+
+![](schematic.png)
+
+---
+
+# Raw Data
+
+![:scale 110%](promed-raw.png)
+
+
+---
+class: center, middle, animated, slideInRight
+# Raw Data
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_1_widescreen.png)]
+
+---
+class: center, middle, animated, slideInRight
+
+#  Total Cases
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_2_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+
+#  Remove Duplicates
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_3_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+#  Remove Outliers
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_4_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+#  Monotonically Increasing
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_5_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+#  Impute Missing Data
+
+![:scale 80%](2019-11-28_ProMED_loglinear_SierraLeone_6_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+#  Daily Incidence Trends
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_7_widescreen.png)
+
+---
+
+# ProMED, HealthMap, and WHO: Incidence
+
+![](who-hm-promed-comparison-13-1.png)
+
+---
+
+# Comparing R Estimates
+
+![](who-hm-promed-comparison-14-1.png)
+
+---
+class: center
+# Statistical Model
+
+![:scale 200%](statistical_model.pdf)
+---
+
+# Movement between spatial units
+
+Approximated by a phenomenological model (e.g. gravity<sup>1</sup> or
+radiation model<sup>2</sup>), or informed by other sources such as air
+or road traffic data.
+
+$$\phi_{i \rightarrow j} = \frac{N_i N_j}{d_{i, j}^{\gamma}}.$$
+
+$$p_{i \rightarrow j} = (1 - p_{stay}^i)\frac{\phi_{i \rightarrow j}}{\sum_{x}{\phi_{i \rightarrow
+  x}}}$$
+  
+.footnote[[1] Grosche, T., Rothlauf, F., & Heinzl, A. (2007). Gravity models for airline passenger volume estimation. Journal of Air Transport Management, 13(4), 175-183.
+
+[2] Simini, F., González, M. C., Maritan, A., & Barabási, A. L. (2012). A universal model for mobility and migration patterns. Nature, 484(7392), 96.]
+
+---
+
+# Model Fitting & Forecasts
+
++ Model fitted to incidence data from all countries in Africa.
+
++ Model parameters - reproduction numbers for each country, distance
+  exponent, and probability of staying - estimated using MCMC in R.
+  
++ For forward simulations, transmissibility assumed to be constant
+  over the forecast horizon.
+
++ Forecasts produce every 7th day, to simulate analysis carried out in an ongoing epidemic.
+
+---
+
+# Forecasts using ProMED Data
+
+![](projections-viz-fixed-country-15-1.ProMED_14_28.png)
+
+---
+
+# Forecasts using HealthMap Data
+
+
+![](projections-viz-fixed-country-15-1.HealthMap_14_28.png)
+
+---
+
+# Model Performance: Accuracy
+
+![](percent_weeks.png)
+
+
+---
+
+# Model Performance: Relative Error
+
+![](log_rmae.png)
+
+
+---
+
+# Model Performance: Bias
+
+![](bias.png)
+
+
+---
+
+# Model Performance: Sharpness
+
+![](sharpness.png)
+
+
+---
+
+# Model Performance
+
+![](allmetrics.png)
+
+
+---
+
+# Model Performance: ProMED, HealthMap and WHO
+
+
+![](forecasts-assess-by-datasource-8-1.14_28.png)
+
+---
+
+# Risk of Spatial Spread: ROC Curve
+
+![:scale 200%](2019-11-29_roc_ProMED_14_28.pdf)
+
+---
+
+# Risk of Spatial Spread 
+
+![:scale 200%](2019-11-29_alerts_in_1_ProMED_14_28.pdf)
+
+---
+
+# Risk of Importation
+
+![:scale 70%](ProMED_importation_risk_first_obs_14.png)
+
+---
+
+# Conclusion
+
++ Variable performance in predicting number of cases.
+
++ Scope for model improvement - different mobility models, increase
+  model complexity, more data on human movement.
+  
++ Model performed very well in predicting risk of spatial spread.
+
++ First demonstration of using data from two widely used digital surveillance
+  tools for epidemic forecasting.
+  
+---
+# Conclusion
+
+.pull-left[![](promed-post-ebola.png)] 
+.pull-right[![](ProMED_importation_risk_first_obs_14.png)]
+
+---
+# Pre-print and more information
+
+.center[![](qrcode.png)]
+.pull-left[[`r icon::fa("github")` `sangeetabhatia03`](https://github.com/sangeetabhatia03)]
+.pull-right[[`r icon::fa("twitter")` `sangeeta0312`](https://twitter.com/sangeeta0312)]

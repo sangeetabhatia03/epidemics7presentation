@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+
+body { font-family: 'Open Sans', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif; }
+h1, h2, h3, h4 {
+  font-family: 'Open Sans';
+  font-weight: normal;
+}
+
+.title-slide {
+  background-color: white;
+}
+
+.title-slide h1, h2, h3, h4 {
+    text-align: center;
+}
+
+.title-slide h1 {
+    color: #432818;
+    text-shadow: none;
+    font-size: 2em;
+    line-height: 1.2;
+    margin-top: 200px;
+}
+
+.title-slide h2 {
+  color: #6F1D1B; 
+  line-height: 1;
+  font-size: 1.5em;
+  text-shadow: none;
+}
+
+
+.title-slide h3 {
+  color: #99582A; 
+  line-height: 1.2;
+  font-size: 0.8em;
+  text-shadow: none;
+}
+
+.title-slide h4 {
+  color: #99582A; 
+  line-height: 1.2;
+  font-size: 0.6em;
+  text-shadow: none;
+  font-style: italic;
+}
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+.remark-slide-content h1 {
+    color: #432818;
+    font-size: 40px;
+}

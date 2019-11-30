@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>A look into the future - using digital disease surveillance tools for near real-time epidemic forecasting</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sangeeta Bhatiaa, Britta Lassmannb, Emily Cohnc, Malwina Carrionb, d, Moritz U. G. Kraemerc, e, f, Mark Herringerg, John Brownsteinc, Larry Madoffb, Anne Coria, Pierre Nouvelleth" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my_theme.css" type="text/css" />
+    <link rel="stylesheet" href="animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: title-slide
+
+# Using digital disease surveillance tools for near real-time epidemic forecasting
+
+&lt;br&gt;
+&lt;h3&gt; Sangeeta Bhatia&lt;sup&gt;a&lt;/sup&gt;, Britta Lassmann&lt;sup&gt;b&lt;/sup&gt;, Emily Cohn&lt;sup&gt;c&lt;/sup&gt;, Malwina Carrion&lt;sup&gt;b, d&lt;/sup&gt;,
+Moritz U. G. Kraemer&lt;sup&gt;c, e, f&lt;/sup&gt;, Mark Herringer&lt;sup&gt;g&lt;/sup&gt;, John Brownstein&lt;sup&gt;c&lt;/sup&gt;, Larry Madoff&lt;sup&gt;b&lt;/sup&gt;, 
+Anne Cori&lt;sup&gt;a&lt;/sup&gt;, Pierre Nouvellet&lt;sup&gt;h&lt;/sup&gt;&lt;/h3&gt;
+
+&lt;br&gt;
+&lt;h4&gt; [a] MRC Centre for Global Infectious Disease Analysis,Imperial
+College London, &lt;br&gt; [b] ProMED, International Society for Infectious Diseases 
+[c] Computational Epidemiology Group, Boston Children’s Hospital, &lt;br&gt;
+[d] Department of Health Science, Sargent College
+[e] Department of Zoology, Oxford University
+[f] Department of Pediatrics, Harvard Medical School
+ [g] healthsites.io, [h] Evolution, Behaviour and Environment, University of Sussex &lt;/h4&gt;
+
+
+
+---
+
+# Project Partners
+
+![](project-partners.png)
+
+---
+# ProMED Mail
+
+![:scale 60%](promed-post-ebola.png)
+
+---
+
+# HealthMap
+
+![](healthmap.png)
+
+---
+# Theoretical Framework
+
+![](schematic.png)
+
+---
+
+# Raw Data
+
+![:scale 110%](promed-raw.png)
+
+
+---
+class: center, middle, animated, slideInRight
+# Raw Data
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_1_widescreen.png)]
+
+---
+class: center, middle, animated, slideInRight
+
+#  Total Cases
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_2_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+
+#  Remove Duplicates
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_3_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+#  Remove Outliers
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_4_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+#  Monotonically Increasing
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_5_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+#  Impute Missing Data
+
+![:scale 80%](2019-11-28_ProMED_loglinear_SierraLeone_6_widescreen.png)
+
+---
+class: center, middle, animated, slideInRight
+#  Daily Incidence Trends
+
+![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_7_widescreen.png)
+
+---
+
+# ProMED, HealthMap, and WHO: Incidence
+
+![](who-hm-promed-comparison-13-1.png)
+
+---
+
+# Comparing R Estimates
+
+![](who-hm-promed-comparison-14-1.png)
+
+---
+class: center
+# Statistical Model
+
+![:scale 200%](statistical_model.pdf)
+---
+
+# Movement between spatial units
+
+Approximated by a phenomenological model (e.g. gravity&lt;sup&gt;1&lt;/sup&gt; or
+radiation model&lt;sup&gt;2&lt;/sup&gt;), or informed by other sources such as air
+or road traffic data.
+
+`$$\phi_{i \rightarrow j} = \frac{N_i N_j}{d_{i, j}^{\gamma}}.$$`
+
+`$$p_{i \rightarrow j} = (1 - p_{stay}^i)\frac{\phi_{i \rightarrow j}}{\sum_{x}{\phi_{i \rightarrow
+  x}}}$$`
+  
+.footnote[[1] Grosche, T., Rothlauf, F., &amp; Heinzl, A. (2007). Gravity models for airline passenger volume estimation. Journal of Air Transport Management, 13(4), 175-183.
+
+[2] Simini, F., González, M. C., Maritan, A., &amp; Barabási, A. L. (2012). A universal model for mobility and migration patterns. Nature, 484(7392), 96.]
+
+---
+
+# Model Fitting &amp; Forecasts
+
++ Model fitted to incidence data from all countries in Africa.
+
++ Model parameters - reproduction numbers for each country, distance
+  exponent, and probability of staying - estimated using MCMC in R.
+  
++ For forward simulations, transmissibility assumed to be constant
+  over the forecast horizon.
+
++ Forecasts produce every 7th day, to simulate analysis carried out in an ongoing epidemic.
+
+---
+
+# Forecasts using ProMED Data
+
+![](projections-viz-fixed-country-15-1.ProMED_14_28.png)
+
+---
+
+# Forecasts using HealthMap Data
+
+
+![](projections-viz-fixed-country-15-1.HealthMap_14_28.png)
+
+---
+
+# Model Performance: Accuracy
+
+![](percent_weeks.png)
+
+
+---
+
+# Model Performance: Relative Error
+
+![](log_rmae.png)
+
+
+---
+
+# Model Performance: Bias
+
+![](bias.png)
+
+
+---
+
+# Model Performance: Sharpness
+
+![](sharpness.png)
+
+
+---
+
+# Model Performance
+
+![](allmetrics.png)
+
+
+---
+
+# Model Performance: ProMED, HealthMap and WHO
+
+
+![](forecasts-assess-by-datasource-8-1.14_28.png)
+
+---
+
+# Risk of Spatial Spread: ROC Curve
+
+![:scale 200%](2019-11-29_roc_ProMED_14_28.pdf)
+
+---
+
+# Risk of Spatial Spread 
+
+![:scale 200%](2019-11-29_alerts_in_1_ProMED_14_28.pdf)
+
+---
+
+# Risk of Importation
+
+![:scale 70%](ProMED_importation_risk_first_obs_14.png)
+
+---
+
+# Conclusion
+
++ Variable performance in predicting number of cases.
+
++ Scope for model improvement - different mobility models, increase
+  model complexity, more data on human movement.
+  
++ Model performed very well in predicting risk of spatial spread.
+
++ First demonstration of using data from two widely used digital surveillance
+  tools for epidemic forecasting.
+  
+---
+# Conclusion
+
+.pull-left[![](promed-post-ebola.png)] 
+.pull-right[![](ProMED_importation_risk_first_obs_14.png)]
+
+---
+# Pre-print and more information
+
+.center[![](qrcode.png)]
+.pull-left[[<i class="fab  fa-github "></i> `sangeetabhatia03`](https://github.com/sangeetabhatia03)]
+.pull-right[[<i class="fab  fa-twitter "></i> `sangeeta0312`](https://twitter.com/sangeeta0312)]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url(MRC_GIDA_Imperial_colour_web.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 220px;
+  height: 256px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
