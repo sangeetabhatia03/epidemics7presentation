@@ -136,7 +136,7 @@ class: center, middle, animated, slideInRight
 
 ---
 class: center, middle, animated, slideInRight
-#  Monotonically Increasing
+#  Make Non-Decreasing
 <br><br>
 ![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_5_widescreen.png)
 
