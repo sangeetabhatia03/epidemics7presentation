@@ -43,27 +43,52 @@ College London, &lt;br&gt; [b] ProMED, International Society for Infectious Dise
 &lt;br&gt;&lt;br&gt;
 ![](project-partners.png)
 
+
+---
+# Data collection is challenging
+
+.center[![](surveillance.png)]
+
 ---
 # ProMED Mail
 &lt;br&gt;&lt;br&gt;
-![:scale 60%](promed-post-ebola.png)
+![:scale 70%](promed-post-ebola.png)
 
+???
+- The rapid growth of the internet has fostered a corresponding
+  increase in tools for internet based disease detection and
+  monitoring that lie at the other end of the spectrum.
+- Program for Monitoring Emerging Diseases was one of the first
+  entrants in the field of digital disease surveillance.
+- ProMED reported in March 2014 on the likely spread of Zika to
+  Americas, well before February 2015.
+  
+  
 ---
 
 # HealthMap
 &lt;br&gt;&lt;br&gt;
 ![](healthmap.png)
 
+???
+- The surveillance data collected by HealthMap has been incorporated
+  into the Epidemic Intelligence from Open Sources (EIOS) surveillance
+  system, developed by WHO.
+  
+
 ---
 # Theoretical Framework
 &lt;br&gt;&lt;br&gt;
 ![](schematic.png)
 
+???
+- Here I mainly talk about 1, 2, 3 reporting on a case study of this
+  framework using data from West African Ebola epidemic.
 ---
 
 # Raw Data
 &lt;br&gt;&lt;br&gt;
-![:scale 110%](promed-raw.png)
+![:scale 200%](promed-raw.png)
 
 
 ---
@@ -116,12 +141,23 @@ class: center, middle, animated, slideInRight
 &lt;br&gt;&lt;br&gt;
 ![](who-hm-promed-comparison-13-1.png)
 
+???
+- There were substantial differences between the incidence time series
+  derived from the three data sources, particularly at the peak of the
+  epidemic.
+- Potential reasons - variability in digital surveillance reporting
+- WHO data are a cleaned version, made available 1 year after the epidemic was over.
 ---
 
 # Comparing R Estimates
 &lt;br&gt;&lt;br&gt;
 ![](who-hm-promed-comparison-14-1.png)
 
+???
+- the time-varying transmissibility, measured by the reproduction
+  number (the average number of secondary cases at time t per infected
+  individual), were better correlated.
+  
 ---
 class: center
 # Statistical Model
@@ -156,7 +192,8 @@ or road traffic data.
 + For forward simulations, transmissibility assumed to be constant
   over the forecast horizon.
 
-+ Forecasts produce every 7th day, to simulate analysis carried out in an ongoing epidemic.
++ Forecasts produce every 7th day, to simulate analysis carried out in 
+an ongoing epidemic.
 
 ---
 
@@ -214,11 +251,39 @@ or road traffic data.
 ![](forecasts-assess-by-datasource-8-1.14_28.png)
 
 ---
+# Model Performance
 
++ Variable model performance in predicting the number of cases.
+
++ Better at short forecast horizons, becomes worse as forecasts are
+made over longer horizons.
+
+---
+
+# Risk of Spatial Spread
+
++ For each week and each country in Africa, generated an alert if the
+  predicted incidence (a predetermined percentile of the forecast
+  interval) was greater than 0. 
+  
++ True alert - if observed incidence is non-zero, false is alert was
+  raised but no cases observed in that week, missed alert if there
+  were cases but no alert was raised. 
+  
+  
+
+
+---
 # Risk of Spatial Spread: ROC Curve
 &lt;br&gt;&lt;br&gt;
 ![:scale 200%](2019-11-29_roc_ProMED_14_28.pdf)
 
+
+??? 
+- our model achieved high sensitivity but variable specificity
+- sensitivity of the model remained high over longer forecast horizon
+  while the specificity deteriorated,
+- more false alerts being raised 4 week ahead
 ---
 
 # Risk of Spatial Spread 
@@ -226,7 +291,11 @@ or road traffic data.
 ![:scale 200%](2019-11-29_alerts_in_1_ProMED_14_28.pdf)
 
 ---
+# Risk of Importation
 
+.center[![:scale  200%](importation_risk.pdf)]
+
+---
 # Risk of Importation
 &lt;br&gt;&lt;br&gt;
 ![:scale 70%](ProMED_importation_risk_first_obs_14.png)

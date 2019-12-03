@@ -57,97 +57,133 @@ College London, <br> [b] ProMED, International Society for Infectious Diseases
 ---
 
 # Project Partners
-
+<br><br>
 ![](project-partners.png)
+
+
+---
+# Data collection is challenging
+
+.center[![](surveillance.png)]
 
 ---
 # ProMED Mail
+<br><br>
+![:scale 70%](promed-post-ebola.png)
 
-![:scale 60%](promed-post-ebola.png)
-
+???
+- The rapid growth of the internet has fostered a corresponding
+  increase in tools for internet based disease detection and
+  monitoring that lie at the other end of the spectrum.
+- Program for Monitoring Emerging Diseases was one of the first
+  entrants in the field of digital disease surveillance.
+- ProMED reported in March 2014 on the likely spread of Zika to
+  Americas, well before February 2015.
+  
+  
 ---
 
 # HealthMap
-
+<br><br>
 ![](healthmap.png)
+
+???
+- The surveillance data collected by HealthMap has been incorporated
+  into the Epidemic Intelligence from Open Sources (EIOS) surveillance
+  system, developed by WHO.
+  
 
 ---
 # Theoretical Framework
-
+<br><br>
 ![](schematic.png)
 
+???
+- Here I mainly talk about 1, 2, 3 reporting on a case study of this
+  framework using data from West African Ebola epidemic.
 ---
 
 # Raw Data
-
-![:scale 110%](promed-raw.png)
+<br><br>
+![:scale 200%](promed-raw.png)
 
 
 ---
 class: center, middle, animated, slideInRight
 # Raw Data
-
+<br><br>
 ![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_1_widescreen.png)]
 
 ---
 class: center, middle, animated, slideInRight
 
 #  Total Cases
-
+<br><br>
 ![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_2_widescreen.png)
 
 ---
 class: center, middle, animated, slideInRight
 
 #  Remove Duplicates
-
+<br><br>
 ![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_3_widescreen.png)
 
 ---
 class: center, middle, animated, slideInRight
 #  Remove Outliers
-
+<br><br>
 ![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_4_widescreen.png)
 
 ---
 class: center, middle, animated, slideInRight
 #  Monotonically Increasing
-
+<br><br>
 ![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_5_widescreen.png)
 
 ---
 class: center, middle, animated, slideInRight
 #  Impute Missing Data
-
+<br><br>
 ![:scale 80%](2019-11-28_ProMED_loglinear_SierraLeone_6_widescreen.png)
 
 ---
 class: center, middle, animated, slideInRight
 #  Daily Incidence Trends
-
+<br><br>
 ![:scale 70%](2019-11-28_ProMED_loglinear_SierraLeone_7_widescreen.png)
 
 ---
 
 # ProMED, HealthMap, and WHO: Incidence
-
+<br><br>
 ![](who-hm-promed-comparison-13-1.png)
 
+???
+- There were substantial differences between the incidence time series
+  derived from the three data sources, particularly at the peak of the
+  epidemic.
+- Potential reasons - variability in digital surveillance reporting
+- WHO data are a cleaned version, made available 1 year after the epidemic was over.
 ---
 
 # Comparing R Estimates
-
+<br><br>
 ![](who-hm-promed-comparison-14-1.png)
 
+???
+- the time-varying transmissibility, measured by the reproduction
+  number (the average number of secondary cases at time t per infected
+  individual), were better correlated.
+  
 ---
 class: center
 # Statistical Model
-
+<br><br>
 ![:scale 200%](statistical_model.pdf)
 ---
 
 # Movement between spatial units
-
+<br><br>
 Approximated by a phenomenological model (e.g. gravity<sup>1</sup> or
 radiation model<sup>2</sup>), or informed by other sources such as air
 or road traffic data.
@@ -164,7 +200,7 @@ $$p_{i \rightarrow j} = (1 - p_{stay}^i)\frac{\phi_{i \rightarrow j}}{\sum_{x}{\
 ---
 
 # Model Fitting & Forecasts
-
+<br><br>
 + Model fitted to incidence data from all countries in Africa.
 
 + Model parameters - reproduction numbers for each country, distance
@@ -173,85 +209,118 @@ $$p_{i \rightarrow j} = (1 - p_{stay}^i)\frac{\phi_{i \rightarrow j}}{\sum_{x}{\
 + For forward simulations, transmissibility assumed to be constant
   over the forecast horizon.
 
-+ Forecasts produce every 7th day, to simulate analysis carried out in an ongoing epidemic.
++ Forecasts produce every 7th day, to simulate analysis carried out in 
+an ongoing epidemic.
 
 ---
 
 # Forecasts using ProMED Data
-
+<br><br>
 ![](projections-viz-fixed-country-15-1.ProMED_14_28.png)
 
 ---
 
 # Forecasts using HealthMap Data
-
+<br><br>
 
 ![](projections-viz-fixed-country-15-1.HealthMap_14_28.png)
 
 ---
 
 # Model Performance: Accuracy
-
+<br><br>
 ![](percent_weeks.png)
 
 
 ---
 
 # Model Performance: Relative Error
-
+<br><br>
 ![](log_rmae.png)
 
 
 ---
 
 # Model Performance: Bias
-
+<br><br>
 ![](bias.png)
 
 
 ---
 
 # Model Performance: Sharpness
-
+<br><br>
 ![](sharpness.png)
 
 
 ---
 
 # Model Performance
-
+<br><br>
 ![](allmetrics.png)
 
 
 ---
 
 # Model Performance: ProMED, HealthMap and WHO
-
+<br><br>
 
 ![](forecasts-assess-by-datasource-8-1.14_28.png)
 
 ---
+# Model Performance
 
++ Variable model performance in predicting the number of cases.
+
++ Better at short forecast horizons, becomes worse as forecasts are
+made over longer horizons.
+
+---
+
+# Risk of Spatial Spread
+
++ For each week and each country in Africa, generated an alert if the
+  predicted incidence (a predetermined percentile of the forecast
+  interval) was greater than 0. 
+  
++ True alert - if observed incidence is non-zero, false is alert was
+  raised but no cases observed in that week, missed alert if there
+  were cases but no alert was raised. 
+  
+  
+
+
+---
 # Risk of Spatial Spread: ROC Curve
-
+<br><br>
 ![:scale 200%](2019-11-29_roc_ProMED_14_28.pdf)
 
+
+??? 
+- our model achieved high sensitivity but variable specificity
+- sensitivity of the model remained high over longer forecast horizon
+  while the specificity deteriorated,
+- more false alerts being raised 4 week ahead
 ---
 
 # Risk of Spatial Spread 
-
+<br><br>
 ![:scale 200%](2019-11-29_alerts_in_1_ProMED_14_28.pdf)
 
 ---
-
 # Risk of Importation
 
+.center[![:scale  200%](importation_risk.pdf)]
+
+---
+# Risk of Importation
+<br><br>
 ![:scale 70%](ProMED_importation_risk_first_obs_14.png)
 
 ---
 
 # Conclusion
-
+<br><br> 
 + Variable performance in predicting number of cases.
 
 + Scope for model improvement - different mobility models, increase
@@ -259,8 +328,10 @@ $$p_{i \rightarrow j} = (1 - p_{stay}^i)\frac{\phi_{i \rightarrow j}}{\sum_{x}{\
   
 + Model performed very well in predicting risk of spatial spread.
 
-+ First demonstration of using data from two widely used digital surveillance
-  tools for epidemic forecasting.
++ Correctly attributed high risk of importation to source country.
+
++ First demonstration of using data from two widely used digital 
+  surveillance tools for epidemic forecasting.
   
 ---
 # Conclusion
