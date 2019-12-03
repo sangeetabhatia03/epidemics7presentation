@@ -179,7 +179,7 @@ class: center, middle, animated, slideInRight
 class: center
 # Statistical Model
 <br><br>
-![:scale 200%](statistical_model.pdf)
+![:scale 200%](statistical_model.png)
 ---
 
 # Movement between spatial units
@@ -293,7 +293,7 @@ made over longer horizons.
 ---
 # Risk of Spatial Spread: ROC Curve
 <br><br>
-![:scale 200%](2019-11-29_roc_ProMED_14_28.pdf)
+![:scale 200%](2019-11-29_roc_ProMED_14_28.png)
 
 
 ??? 
@@ -305,12 +305,12 @@ made over longer horizons.
 
 # Risk of Spatial Spread 
 <br><br>
-![:scale 200%](2019-11-29_alerts_in_1_ProMED_14_28.pdf)
+![:scale 200%](2019-11-29_alerts_in_1_ProMED_14_28.png)
 
 ---
 # Risk of Importation
 
-.center[![:scale  200%](importation_risk.pdf)]
+.center[![:scale  200%](importation_risk.png)]
 
 ---
 # Risk of Importation
