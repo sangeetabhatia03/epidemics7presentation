@@ -308,6 +308,13 @@ made over longer horizons.
 ![:scale 200%](2019-11-29_alerts_in_1_ProMED_14_28.png)
 
 ---
+# Risk of Spatial Spread 
+
+<br><br>
+![:scale 200%](roc_over_time.png)
+
+
+---
 # Risk of Importation
 
 .center[![:scale  200%](importation_risk.png)]
